@@ -10,6 +10,15 @@ import { Pelicula } from '../interfaces/iterfaces';
 export class Tab1Page implements OnInit {
   public peliculasRecientes: Pelicula[] = [];
   public peliculasPopulares: Pelicula[] = [];
+  public slideOpts: {} = {
+    initialSlide: 1,
+    speed: 200,
+    slidesPerView: 3.1,
+    freeMode: true,
+    slidesPerColumn: 2,
+    slidesPerColumnFill: 'row',
+    spaceBetween: 1
+  };
 
   constructor(
     private moviesService: MoviesService
