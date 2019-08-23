@@ -28,4 +28,9 @@ export class MoviesService {
     const to = moment().format('YYYY-MM-DD');
     return this.ejecutarQuery<RespuestaMDB>(`discover/movie?primary_release_date.gte=${from}&primary_release_date.lte=${to}`);
   }
+
+  getPopulares(sort: string = 'desc') {
+    const query = `discover/movie?sort_by=popularity.${sort}`;
+    return this.ejecutarQuery<RespuestaMDB>(query);
+  }
 }
