@@ -1,5 +1,7 @@
 import { Movie } from './../../interfaces/iterfaces';
 import { Component, OnInit, Input } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { DetailMovieComponent } from '../detail-movie/detail-movie.component';
 
 @Component({
   selector: 'app-slidesshow-poster',
@@ -11,13 +13,23 @@ export class SlidesshowPosterComponent implements OnInit {
 
   public slideOpts: {} = {
     initialSlide: 1,
-    speed: 400,
-    slidesPerView: 1.1,
-    freeMode: true
+    speed: 200,
+    slidesPerView: 3.1,
+    freeMode: true,
+    spaceBetween: 1
   };
 
-  constructor() { }
+  constructor(protected modalCtrl: ModalController) { }
 
   ngOnInit() {}
 
+  async presentModal(id: string) {
+    const modal = await this.modalCtrl.create({
+      component: DetailMovieComponent,
+      componentProps: {
+        id
+      }
+    });
+    return await modal.present();
+  }
 }

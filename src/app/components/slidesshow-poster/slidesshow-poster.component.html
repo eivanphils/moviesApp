@@ -1,6 +1,14 @@
 <ion-slides [options]="slideOpts">
-    <ion-slide class="poster" *ngFor="let movie of movies">
-      <ion-img [src]="movie.poster_path | imagen"></ion-img>
+    <ion-slide *ngFor="let movie of movies">
+      <ion-row>
+        <ion-col size="12">
+          <ion-card
+            class="poster"
+            (click)="presentModal(movie.id)">
+            <img [src]="movie.poster_path | imagen">
+          </ion-card>
+        </ion-col>
+      </ion-row>
     </ion-slide>
 
   </ion-slides>

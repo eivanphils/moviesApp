@@ -2,7 +2,9 @@
   <ion-slide *ngFor="let movie of movies; let even = even; let odd = odd">
     <ion-row>
       <ion-col size="12">
-        <ion-card class="poster">
+        <ion-card 
+          class="poster"
+          (click)="presentModal(movie.id)">
           <img [src]="movie.poster_path | imagen">
         </ion-card>
       </ion-col>
@@ -13,7 +15,7 @@
     <ion-button expand="full" 
                 class="btn-mas"
                 size="large" 
-                (click)="onClick()">
+                (click)="loadMoreMovies()">
       <ion-icon slot="icon-only" name="add"></ion-icon>
     </ion-button>
     
