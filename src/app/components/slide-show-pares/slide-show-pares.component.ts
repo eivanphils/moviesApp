@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Movie } from '../../interfaces/iterfaces';
+import { Movie } from '../../interfaces/interfaces';
 import { ModalController } from '@ionic/angular';
 import { DetailMovieComponent } from '../detail-movie/detail-movie.component';
 

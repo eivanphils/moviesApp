@@ -1,4 +1,4 @@
-import { Movie } from './../../interfaces/iterfaces';
+import { Movie } from '../../interfaces/interfaces';
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { DetailMovieComponent } from '../detail-movie/detail-movie.component';
