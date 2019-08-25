@@ -8,7 +8,7 @@
     </ion-row>
   </ion-grid>
 
-<app-slideshow-backdrop [peliculas]="peliculasRecientes"></app-slideshow-backdrop>
+<app-slideshow-backdrop [movies]="recentMovies"></app-slideshow-backdrop>
 
 <ion-grid fixed>
   <ion-row>
@@ -18,7 +18,7 @@
   </ion-row>
 </ion-grid>
 
-<app-slidesshow-poster [peliculas]="peliculasRecientes"></app-slidesshow-poster>
+<app-slidesshow-poster [movies]="recentMovies"></app-slidesshow-poster>
 
 <ion-grid fixed>
     <ion-row>
@@ -28,5 +28,8 @@
     </ion-row>
   </ion-grid>
 
-<app-slide-show-pares [peliculas]="peliculasPopulares" [slideOpts]="slideOpts"></app-slide-show-pares>
+<app-slide-show-pares 
+  (loadMovies)="getPopularMovies()"
+  [movies]="popularMovies" 
+  [slideOpts]="slideOpts"></app-slide-show-pares>
 </ion-content>

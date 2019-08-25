@@ -1,4 +1,4 @@
-import { Pelicula } from './../../interfaces/iterfaces';
+import { Movie } from './../../interfaces/iterfaces';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./slideshow-backdrop.component.scss'],
 })
 export class SlideshowBackdropComponent implements OnInit {
-  @Input() peliculas: Pelicula[] = [];
+  @Input() movies: Movie[] = [];
 
   public slideOpts: {} = {
     initialSlide: 1,

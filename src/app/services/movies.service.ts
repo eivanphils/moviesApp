@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { RespuestaMDB } from '../interfaces/iterfaces';
+import { ResponseMB } from '../interfaces/iterfaces';
 import { environment } from '../../environments/environment';
 import * as moment from 'moment';
 
@@ -11,6 +11,8 @@ const apiKey = environment.apiKey;
   providedIn: 'root'
 })
 export class MoviesService {
+  private popularPages = 0;
+
   private ejecutarQuery<T>(query: string) {
     query = url + query;
 
@@ -26,11 +28,12 @@ export class MoviesService {
   getFeactures() {
     const from = moment('2012-10-01').format('YYYY-MM-DD'); // 7 years ago    ;
     const to = moment().format('YYYY-MM-DD');
-    return this.ejecutarQuery<RespuestaMDB>(`discover/movie?primary_release_date.gte=${from}&primary_release_date.lte=${to}`);
+    return this.ejecutarQuery<ResponseMB>(`discover/movie?primary_release_date.gte=${from}&primary_release_date.lte=${to}`);
   }
 
   getPopulares(sort: string = 'desc') {
-    const query = `discover/movie?sort_by=popularity.${sort}`;
-    return this.ejecutarQuery<RespuestaMDB>(query);
+    this.popularPages++;
+    const query = `discover/movie?sort_by=popularity.${sort}&page=${this.popularPages}`;
+    return this.ejecutarQuery<ResponseMB>(query);
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '../services/movies.service';
-import { Pelicula } from '../interfaces/iterfaces';
+import { Movie } from '../interfaces/iterfaces';
 
 @Component({
   selector: 'app-tab1',
@@ -8,8 +8,8 @@ import { Pelicula } from '../interfaces/iterfaces';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
-  public peliculasRecientes: Pelicula[] = [];
-  public peliculasPopulares: Pelicula[] = [];
+  public recentMovies: Movie[] = [];
+  public popularMovies: Movie[] = [];
   public slideOpts: {} = {
     initialSlide: 1,
     speed: 200,
@@ -26,21 +26,21 @@ export class Tab1Page implements OnInit {
 
   ngOnInit() {
     this.getMovies();
-    this.getPopulares();
+    this.getPopularMovies();
   }
 
   getMovies() {
     this.moviesService.getFeactures().subscribe(
       (response) => {
-        this.peliculasRecientes = response.results;
+        this.recentMovies = response.results;
       }
     );
   }
 
-  getPopulares() {
-    this.moviesService.getPopulares().subscribe(
+  getPopularMovies() {
+    this.moviesService.getPopulares('desc').subscribe(
       (response) => {
-        this.peliculasPopulares = response.results;
+        this.popularMovies.push(...response.results);
       }
     );
   }

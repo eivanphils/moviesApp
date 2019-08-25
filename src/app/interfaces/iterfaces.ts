@@ -1,13 +1,13 @@
 
 
-export interface RespuestaMDB {
+export interface ResponseMB {
     page: number;
     total_results: number;
     total_pages: number;
-    results: Pelicula[];
+    results: Movie[];
 }
 
-export interface Pelicula {
+export interface Movie {
     vote_count: number;
     id: number;
     video: boolean;
