@@ -1,9 +1,56 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Two
+      Buscar peliculas
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-toolbar>
+  <ion-searchbar 
+    placeholder="Buscar"
+    (ionChange)="onSearchChange($event)"
+    [debounce]="700"
+    [value]="query"></ion-searchbar>
+</ion-toolbar>
+
+<ion-content>
+
+  <ion-grid *ngIf="loading">
+    <ion-row>
+      <ion-col text-center>
+        <ion-spinner name="dots"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list *ngIf="!movies">
+    <ion-list-header>
+      <ion-label>Peliculas sugeridas</ion-label>
+    </ion-list-header>
+
+    <ion-item *ngFor="let movie of suggestedMovies">
+      <ion-label color="primary" 
+                 (click)="query = movie.title">
+                 {{movie.title}}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-grid fixed *ngIf="movies">
+    <ion-row>
+      <ion-col size="6" *ngFor="let movie of movies">
+        <ion-card (click)="showDetail(movie.id)">
+          <img [src]="movie.poster_path | imagen">
+
+          <ion-card-header>
+            <ion-card-subtitle>{{movie.release_date}}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+              {{movie.title}}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

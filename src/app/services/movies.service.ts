@@ -44,4 +44,8 @@ export class MoviesService {
   getCreditsFromMovie(movieId: string) {
     return this.executeQuery<ResponseCredits>(`movie/${movieId}/credits?`);
   }
+
+  searchMovie(query: string) {
+    return this.executeQuery<ResponseMB>(`search/movie?query=${query}&`);
+  }
 }
