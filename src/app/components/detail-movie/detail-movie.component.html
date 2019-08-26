@@ -72,7 +72,8 @@
 <ion-footer no-border>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="backHome()">
+      <ion-button color="primary" 
+                  (click)="backHome()">
         <ion-icon slot="start" name="arrow-back"></ion-icon>
         Regresar
       </ion-button>
@@ -80,8 +81,10 @@
 
     <ion-buttons slot="end">
         <ion-button (click)="favorite()">
-          <ion-icon slot="end" name="star-outline"></ion-icon>
-          Favorite
+          <ion-icon slot="end" 
+                    name="heart"
+                    color="danger"></ion-icon>
+          FavoritO
         </ion-button>
       </ion-buttons>
   </ion-toolbar>
