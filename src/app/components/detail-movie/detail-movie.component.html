@@ -63,6 +63,7 @@
           <img [src]="actor.profile_path | imagen" *ngIf="actor.profile_path">
           <img src="assets/no-avatar.jpg" *ngIf="!actor.profile_path">
           <ion-label class="actor-name">{{actor.name}}</ion-label>
+          <h6>({{actor.character}})</h6>
       </ion-card>
     </ion-slide>
   </ion-slides>
