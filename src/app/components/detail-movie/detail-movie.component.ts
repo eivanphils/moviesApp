@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
-import { MovieDetail, ResponseCredits } from '../../interfaces/interfaces';
+import { MovieDetail, ResponseCredits, } from '../../interfaces/interfaces';
 import { ModalController } from '@ionic/angular';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-detail-movie',
@@ -10,10 +11,11 @@ import { ModalController } from '@ionic/angular';
 })
 export class DetailMovieComponent implements OnInit {
   @Input() id: string;
-  
+
   public movieDetail: MovieDetail = {};
   public creditsMovie: ResponseCredits = {};
   public hide = 150;
+  public exist = false;
   public actorOptionsCard: any =  {
     initialSlide: 1,
     slidesPerView: 3.3,
@@ -23,13 +25,14 @@ export class DetailMovieComponent implements OnInit {
 
   constructor(
     protected movieService: MoviesService,
+    protected storageService: StorageService,
     protected modalCtrl: ModalController
   ) { }
 
   ngOnInit() {
-    console.log('id', this.id);
     this.getMovieDetail();
     this.getCreditsFromMovie();
+   /*this. exist = await this.storageService.movieExis(this.movieDetail.id);*/
   }
 
   getMovieDetail() {
@@ -52,8 +55,8 @@ export class DetailMovieComponent implements OnInit {
     this.modalCtrl.dismiss();
   }
 
-  favorite() {
-
+  saveFavorite(movie: MovieDetail) {
+    this.storageService.saveFavoriteMovie(movie);
   }
 
 }

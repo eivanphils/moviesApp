@@ -80,9 +80,9 @@
     </ion-buttons>
 
     <ion-buttons slot="end">
-        <ion-button (click)="favorite()">
+        <ion-button (click)="saveFavorite(movieDetail)">
           <ion-icon slot="end" 
-                    name="heart"
+                    name="{{exist ? 'trash' : 'heart'}}"
                     color="danger"></ion-icon>
           FavoritO
         </ion-button>
