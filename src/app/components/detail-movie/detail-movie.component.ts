@@ -29,10 +29,10 @@ export class DetailMovieComponent implements OnInit {
     protected modalCtrl: ModalController
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.getMovieDetail();
     this.getCreditsFromMovie();
-   /*this. exist = await this.storageService.movieExis(this.movieDetail.id);*/
+    this.exist = await this.storageService.movieExis(this.id);
   }
 
   getMovieDetail() {
@@ -56,6 +56,7 @@ export class DetailMovieComponent implements OnInit {
   }
 
   saveFavorite(movie: MovieDetail) {
+    this.exist = !this.exist;
     this.storageService.saveFavoriteMovie(movie);
   }
 

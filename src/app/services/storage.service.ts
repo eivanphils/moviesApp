@@ -35,12 +35,18 @@ export class StorageService {
     this.presentToast('primary', 'Pelicula eliminada de favoritos');
   }
 
-  loadMovies() {
-
+  async loadMovies() {
+    const movies = await this.storage.get('favoritos');
+    this.movies = movies || [];
+    return this.movies;
   }
 
-  movieExis(id: number) {
+  async movieExis(id) {
+    id = Number(id);
+    await this.loadMovies();
+    const exist = this.movies.find(movie => movie.id === id);
 
+    return (exist)? true : false;
   }
 
   async presentToast(color: string, message: string) {
