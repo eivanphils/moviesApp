@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ResponseMB, MovieDetail, ResponseCredits } from '../interfaces/interfaces';
+import { ResponseMB, MovieDetail, ResponseCredits, Genre } from '../interfaces/interfaces';
 import { environment } from '../../environments/environment';
 import { Storage } from '@ionic/storage';
 import * as moment from 'moment';
@@ -15,6 +15,8 @@ const apiKey = environment.apiKey;
 export class MoviesService {
   private popularPages = 0;
 
+  public geners: Genre[] = [];
+
   private executeQuery<T>(query: string) {
     query = url + query;
 
@@ -27,7 +29,9 @@ export class MoviesService {
     private http: HttpClient,
     private storage: Storage,
     protected toastCtrl: ToastController
-  ) { }
+  ) {
+    this.getGenders();
+   }
 
   getFeactures() {
     const from = moment('2012-10-01').format('YYYY-MM-DD'); // 7 years ago    ;
@@ -51,5 +55,16 @@ export class MoviesService {
 
   searchMovie(query: string) {
     return this.executeQuery<ResponseMB>(`search/movie?query=${query}&`);
+  }
+
+  getGenders(): Promise <any[]> {
+    return new Promise( resolve => {
+      return this.executeQuery(`genre/movie/list?`).subscribe(
+        res => {
+          this.geners = res['genres'];
+          resolve(this.geners);
+        }
+      );
+    });
   }
 }
