@@ -1,5 +1,5 @@
 import { Genre } from './../interfaces/interfaces';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { StorageService } from '../services/storage.service';
 import { MoviesService } from '../services/movies.service';
 import { MovieDetail } from '../interfaces/interfaces';
@@ -9,7 +9,7 @@ import { MovieDetail } from '../interfaces/interfaces';
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss']
 })
-export class Tab3Page implements OnInit {
+export class Tab3Page {
   moviesByGeners: any[] = [];
   genres: Genre[] = [];
   movies: MovieDetail[] = [];
@@ -21,7 +21,7 @@ export class Tab3Page implements OnInit {
     console.log(this.movieService.geners);
   }
 
-  async ngOnInit() {
+  async ionViewDidEnter() {
     this.genres = await this.movieService.getGenders();
     this.movies = await this.storageService.loadMovies();
 
